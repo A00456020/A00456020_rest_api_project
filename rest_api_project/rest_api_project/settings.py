@@ -78,10 +78,10 @@ WSGI_APPLICATION = 'rest_api_project.wsgi.application'
 DATABASES = {
     'default': {
         'ENGINE': 'django.db.backends.mysql',
-        'NAME': 'sql5478504',
-        'HOST': 'sql5.freemysqlhosting.net',
-        'USER': 'sql5478504',
-        'PASSWORD': '88v3kFz4Nz',
+        'NAME': 'restapi_db',
+        'HOST': 'localhost',
+        'USER': 'project_dbadmin',
+        'PASSWORD': 'access',
         'PORT': '3306'
     }
 }
