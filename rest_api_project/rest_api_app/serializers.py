@@ -40,7 +40,7 @@ class CustomerSerializer(serializers.ModelSerializer):
         )
 
     class Meta:
-        model = Hotel
+        model = Customer
         fields = [
             'id',
             'name',
@@ -62,17 +62,25 @@ class ReservationSerializer(serializers.ModelSerializer):
         return Reservation.objects.create(
             hotel_id=validated_data.get('hotel_id'),
             customer_id=validated_data.get('customer_id'),
+            hotel_name=str(Hotel.objects.get(id=validated_data.get('hotel_id')).name),
+            customer_name=str(Customer.objects.get(id=validated_data.get('customer_id')).name),
+            hotel_website=str(Hotel.objects.get(id=validated_data.get('hotel_id')).website),
+            customer_phone=str(Customer.objects.get(id=validated_data.get('customer_id')).mobile),
             number_of_rooms=validated_data.get('number_of_rooms'),
             checkin_date=validated_data.get('checkin_date'),
             checkout_date=validated_data.get('checkout_date'),
         )
 
     class Meta:
-        model = Hotel
+        model = Reservation
         fields = [
             'id',
             'hotel_id',
             'customer_id',
+            'hotel_name',
+            'customer_name',
+            'customer_phone',
+            'hotel_website',
             'number_of_rooms',
             'checkin_date',
             'checkout_date'
