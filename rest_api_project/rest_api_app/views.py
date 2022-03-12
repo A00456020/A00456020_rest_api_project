@@ -1,5 +1,3 @@
-from django.shortcuts import render
-from django.http import HttpResponse
 from .models import Hotel, Customer, Reservation
 from .serializers import HotelSerializer, CustomerSerializer, ReservationSerializer
 from rest_framework.response import Response
@@ -22,9 +20,17 @@ class HotelView(APIView):
         if hotel_serializer.is_valid():
             new_hotel = hotel_serializer.save()
             query_serializer = HotelSerializer(new_hotel)
-            return Response(query_serializer.data, status=201)
+            return Response(query_serializer.data, status=200)
         else:
             return Response(hotel_serializer.errors, status=400)
+
+
+class HotelListView(APIView):
+
+    def get(self, request):
+        queryset = Hotel.objects.all()
+        query_serializer = HotelSerializer(queryset, many=True)
+        return Response({"hotels_list": query_serializer.data})
 
 
 class CustomerView(APIView):
@@ -43,7 +49,7 @@ class CustomerView(APIView):
         if customer_serializer.is_valid():
             new_customer = customer_serializer.save()
             query_serializer = CustomerSerializer(new_customer)
-            return Response(query_serializer.data, status=201)
+            return Response(query_serializer.data, status=200)
         else:
             return Response(customer_serializer.errors, status=400)
 
@@ -64,7 +70,19 @@ class ReservationView(APIView):
         if reservation_serializer.is_valid():
             new_reservation = reservation_serializer.save()
             query_serializer = ReservationSerializer(new_reservation)
-            return Response(query_serializer.data, status=201)
+            return Response(query_serializer.data, status=200)
+        else:
+            return Response(reservation_serializer.errors, status=400)
+
+
+class ReservationConfirmation(APIView):
+
+    def post(self, request):
+        reservation_serializer = ReservationSerializer(data=request.data)
+        if reservation_serializer.is_valid():
+            new_reservation = reservation_serializer.save()
+            query_serializer = ReservationSerializer(new_reservation)
+            return Response({"confirmation_number": query_serializer.data["id"]}, status=200)
         else:
             return Response(reservation_serializer.errors, status=400)
 
