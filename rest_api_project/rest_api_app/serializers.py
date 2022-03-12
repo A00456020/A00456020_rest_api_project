@@ -50,9 +50,11 @@ class CustomerSerializer(serializers.ModelSerializer):
 
 
 class ReservationSerializer(serializers.ModelSerializer):
-    hotel_id = serializers.PrimaryKeyRelatedField(many=False, required=True)
-    customer_id = serializers.PrimaryKeyRelatedField(many=False, required=True)
-    number_of_rooms = serializers.IntegerField(required=True, default=1)
+    # hotel_id = serializers.PrimaryKeyRelatedField(many=False, read_only=True)
+    # customer_id = serializers.PrimaryKeyRelatedField(many=False, read_only=True)
+    hotel_id = serializers.IntegerField(required=True)
+    customer_id = serializers.IntegerField(required=True)
+    number_of_rooms = serializers.IntegerField(required=True)
     checkin_date = serializers.DateField(required=True, format='iso-8601', input_formats=['iso-8601'])
     checkout_date = serializers.DateField(required=True, format='iso-8601', input_formats=['iso-8601'])
 
