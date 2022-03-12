@@ -23,3 +23,7 @@ class Reservation(models.Model):
     number_of_rooms = models.IntegerField(null=False, default=1, blank=False)
     checkin_date = models.DateField(null=False, blank=False)
     checkout_date = models.DateField(null=False, blank=False)
+    hotel_name = models.CharField(max_length=100, null=True)
+    customer_name = models.CharField(max_length=100, null=True)
+    customer_phone = models.CharField(max_length=100, null=True)
+    hotel_website = models.CharField(max_length=100, null=True)
