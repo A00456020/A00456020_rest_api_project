@@ -60,7 +60,6 @@ class ReservationView(APIView):
         return Response(query_serializer.data)
 
     def post(self, request):
-        print(request.data)
         reservation_serializer = ReservationSerializer(data=request.data)
         if reservation_serializer.is_valid():
             new_reservation = reservation_serializer.save()
