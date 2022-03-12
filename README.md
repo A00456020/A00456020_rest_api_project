@@ -262,8 +262,11 @@ grant all on restapi_db.* to 'project_dbadmin'@'%';<br>
     "number_of_rooms": 4,
     "checkin_date": "2022-03-19",
     "checkout_date": "2022-03-25"
-}<br></li>
+}
+<br></li>
 </ul>
+<h4>Note: The above mentioned are just a few examples of how the API works.</h4>
+<h4>The API can be easily implement in Android application using the Above calls as they are Cross-Platform</h4>
 
 Thank you,<br>
 Parth Vaidya.
