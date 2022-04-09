@@ -117,7 +117,10 @@ class ReservationView(APIView):
             for item in new_query_serializer_data:
                 del item['reservation_id']
             query_serializer_data['guest_details'] = new_query_serializer_data
-            return Response(query_serializer_data, status=200)
+            return Response({'message': 'Thank you for making a reservation, your reservation is confirmed!',
+                             'Reservation Confirmation Number': reservation_id,
+                             'Reservation Data': query_serializer_data}, status=200)
+            # return Response(query_serializer_data, status=200)
         else:
             return Response(reservation_serializer.errors, status=400)
 
